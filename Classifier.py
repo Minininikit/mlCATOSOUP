@@ -7,7 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 default_data = pd.read_csv('csv/RING_NEW.csv')
 
 model = RandomForestClassifier(max_depth=None, min_samples_leaf=1, min_samples_split=2, n_estimators = 300, random_state=42)
-
+#test
 def dataPre(data):
     y = data['G']
     data_features = ['A','B', 'C']
