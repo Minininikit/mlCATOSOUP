@@ -104,9 +104,24 @@ with tab2:
         ic2.dataframe(data=y_test, use_container_width=True)
 
     line = st.write("-------------------------------------------------------------------------------------------------------------------------------------------")
+
+    max_depth=None
+    min_samples_leaf=1 
+    min_samples_split=2
+    n_estimators = 300
+
+    max_depth = st.slider('max_depth', min_value = None, max_value = 20, value = None)
+    min_samples_leaf = st.slider('min_samples_leaf', min_value = 1, max_value = 10, value = 1)
+    min_samples_split = st.slider('min_samples_split', min_value = 2, max_value = 10, value = 2)
+    n_estimators = st.slider('n_estimators', min_value = 100, max_value = 1000, value = 300, step=10)
+
     train_button = st.button('Train on current data', use_container_width=True)
+
+    if(max_depth == 0):
+        max_depth = None
     
     if(train_button):
+        ml.Tr(max_depth, min_samples_leaf, min_samples_split, n_estimators)
         accuracy, f1 =  ml.training(X_train, X_test, y_train, y_test)
         label = st.subheader('Training results')
         st.write(f'Accuracy:{accuracy}')

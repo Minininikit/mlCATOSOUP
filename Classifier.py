@@ -6,7 +6,15 @@ from sklearn.ensemble import RandomForestClassifier
 
 default_data = pd.read_csv('csv/RING_V2.csv')
 
-model = RandomForestClassifier(max_depth=None, min_samples_leaf=1, min_samples_split=2, n_estimators = 300, random_state=42)
+
+
+#, max_depth, min_samples_leaf, min_samples_split, n_estimators
+
+def Tr(max_depth, min_samples_leaf, min_samples_split, n_estimators):
+    global model
+    model = RandomForestClassifier(max_depth=max_depth, min_samples_leaf=min_samples_leaf, min_samples_split=min_samples_split, n_estimators = n_estimators, random_state=42)
+    
+
 
 def dataPre(data):
     y = data['G']
