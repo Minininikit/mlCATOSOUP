@@ -45,6 +45,7 @@ with tab1:
     upload = c1.file_uploader(' ')
     if upload is not None:
         data = pd.read_csv(upload)
+        data = data[['A','B','C','G']]
     
 
     c2.markdown(
@@ -73,7 +74,7 @@ with tab2:
     c1,c2,c3 = st.columns((1,1,1))
 
     c1.subheader('Dataset')
-    c1.write('Default data: *RING_NEW.csv*')
+    c1.write('Default data: *RING_V2.csv*')
 
     upload = c1.file_uploader('Upload new data')
     if upload is not None:

@@ -4,7 +4,7 @@ from sklearn.metrics import accuracy_score,f1_score
 from sklearn.ensemble import RandomForestClassifier
 
 
-default_data = pd.read_csv('csv/RING_NEW.csv')
+default_data = pd.read_csv('csv/RING_V2.csv')
 
 model = RandomForestClassifier(max_depth=None, min_samples_leaf=1, min_samples_split=2, n_estimators = 300, random_state=42)
 
