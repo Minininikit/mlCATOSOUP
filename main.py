@@ -31,7 +31,7 @@ st.markdown("""
         """, unsafe_allow_html=True)
 
 
-tab1, tab2, tab3 = st.tabs(['Test data', 'Train data', 'Validation'])
+tab1, tab2, tab3, tab4 = st.tabs(['Test data', 'Train data', 'Validation', 'Export File'])
 
 
 data = None
@@ -74,7 +74,7 @@ with tab2:
     c1,c2,c3 = st.columns((1,1,1))
 
     c1.subheader('Dataset')
-    c1.write('Default data: *RING_V2.csv*')
+    c1.write('Default data: *RING_V3_3.csv*')
 
     upload = c1.file_uploader('Upload new data')
     if upload is not None:
@@ -110,10 +110,10 @@ with tab2:
     min_samples_split=2
     n_estimators = 300
 
-    max_depth = st.slider('max_depth', min_value = None, max_value = 20, value = None)
+    max_depth = st.slider('max_depth', min_value = None, max_value = 20, value = 2)
     min_samples_leaf = st.slider('min_samples_leaf', min_value = 1, max_value = 10, value = 1)
-    min_samples_split = st.slider('min_samples_split', min_value = 2, max_value = 10, value = 2)
-    n_estimators = st.slider('n_estimators', min_value = 100, max_value = 5000, value = 300, step=100)
+    min_samples_split = st.slider('min_samples_split', min_value = 2, max_value = 10, value = 9)
+    n_estimators = st.slider('n_estimators', min_value = 100, max_value = 5000, value = 5000, step=100)
 
     expan2 = st.expander('Пояснение для котов 	:cat2:')
     with expan2:
@@ -180,6 +180,18 @@ with tab3:
         plt.tight_layout()
         c2.pyplot(plt.show(), use_container_width=True)
                 
-   
+with tab4:
+    cont2 = st.container
+    c1,c2,c3 = st.columns((1,1,1))
+
+    c1.subheader('Dataset')
 
 
+    upload = c1.file_uploader('Upload data')
+    if upload is not None:
+        newDf = ml.Gen(upload)
+        csv = newDf.to_csv(index=False)
+        st.download_button(label="Download data as CSV",
+        data=csv,
+        file_name="output.csv",
+        mime="text/csv",)    

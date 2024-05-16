@@ -4,7 +4,7 @@ from sklearn.metrics import accuracy_score,f1_score
 from sklearn.ensemble import RandomForestClassifier
 
 
-default_data = pd.read_csv('csv/RING_V2.csv')
+default_data = pd.read_csv('csv/RING_V3_3.csv')
 
 
 
@@ -18,6 +18,7 @@ def Tr(max_depth, min_samples_leaf, min_samples_split, n_estimators):
 
 def dataPre(data):
     y = data['G']
+    global data_features
     data_features = ['A','B', 'C']
     X = data[data_features]
 
@@ -47,3 +48,12 @@ def validation(data):
     f1 = f1_score(y_exam,y_pred,average='weighted')
 
     return accuracy, f1, y_exam, y_pred
+
+
+def Gen(data):
+    newData = pd.read_csv('csv/aboba_1.csv')
+    newX = newData[data_features]
+    G = model.predict(newX)
+    newData['G'] = G
+    newDf = newData
+    return newDf
