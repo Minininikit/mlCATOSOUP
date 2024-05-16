@@ -182,10 +182,11 @@ with tab3:
                 
 with tab4:
     cont2 = st.container
-    c1,c2,c3 = st.columns((1,1,1))
+    c1,c2,c3 = st.columns((1,2,1))
 
     c1.subheader('Dataset')
 
+    newDf = None
 
     upload = c1.file_uploader('Upload data')
     if upload is not None:
@@ -194,4 +195,19 @@ with tab4:
         st.download_button(label="Download data as CSV",
         data=csv,
         file_name="output.csv",
-        mime="text/csv",)    
+        mime="text/csv",)  
+
+
+    c2.markdown(
+            "<div style='text-align: center; padding-top:10px; font-size:24px; font-weight:bold;'>Describe</div>",
+            unsafe_allow_html=True)
+    exp2 = c2.expander('Explore', False)
+    if newDf is not None:
+        c2.dataframe(data=newDf, use_container_width=True)
+
+    c3.markdown(
+            "<div style='text-align: center; padding-top:10px; font-size:24px; font-weight:bold;'>Graph</div>",
+            unsafe_allow_html=True)
+    exp = c3.expander('Explore', False)
+    if newDf is not None:
+        exp.line_chart(data=newDf)
