@@ -6,6 +6,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 default_data = pd.read_csv('csv/RING_V3_3.csv')
 
+newData = pd.read_csv('csv/RING_V3_3.csv')
 
 
 #, max_depth, min_samples_leaf, min_samples_split, n_estimators
@@ -51,7 +52,7 @@ def validation(data):
 
 
 def Gen(data):
-    newData = pd.read_csv(data)
+    # newData = pd.read_csv(data)
     newX = newData[data_features]
     G = model.predict(newX)
     newData['G'] = G

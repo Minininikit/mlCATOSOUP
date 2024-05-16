@@ -190,6 +190,7 @@ with tab4:
 
     upload2 = c1.file_uploader('Upload data')
     if upload2 is not None:
+        ml.newData = pd.read_csv(upload2)
         newDf = ml.Gen(upload)
         csv = newDf.to_csv(index=False)
         st.download_button(label="Download data as CSV",
