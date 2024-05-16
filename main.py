@@ -188,8 +188,8 @@ with tab4:
 
     newDf = None
 
-    upload = c1.file_uploader('Upload data')
-    if upload is not None:
+    upload2 = c1.file_uploader('Upload data')
+    if upload2 is not None:
         newDf = ml.Gen(upload)
         csv = newDf.to_csv(index=False)
         st.download_button(label="Download data as CSV",

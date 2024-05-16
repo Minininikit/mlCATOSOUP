@@ -51,7 +51,7 @@ def validation(data):
 
 
 def Gen(data):
-    newData = pd.read_csv('csv/aboba_1.csv')
+    newData = pd.read_csv(data)
     newX = newData[data_features]
     G = model.predict(newX)
     newData['G'] = G
